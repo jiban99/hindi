@@ -1,0 +1,20 @@
+<div class="box">
+    <div class="p-5">
+        <div class="text-center mb-3 login">
+            User Login
+        </div>
+        <form [formGroup]="LoginForm" action="" method="post">
+            <div class="row">
+                <div class="input-group mb-3">
+                    <input class="form-control" type="text" formControlName="mobile" name="mobile" placeholder="Mobile Number" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input class="form-control" type="password" formControlName="password" name="password" placeholder="Password" required>
+                </div>
+            </div>            
+            <div class="text-right ">
+                <button class="btn btn-primary w-100 br-20" type="submit" (click)="Submit();">Login </button>
+            </div>
+        </form>
+    </div>
+</div>

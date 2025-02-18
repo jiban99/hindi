@@ -1,0 +1,347 @@
+<app-header></app-header>
+<div class="container">
+    <div class="mt-3 ">
+        <form [formGroup]="ReportForm">
+            <div class="shadow-lg p-3 mb-3 bg-white rounded ">
+                <div class="text-center">
+                    <h2>मासिक हिंदी पत्राचार विवरण</h2>
+                </div>
+                <div class="text-center ">
+                    <h4>Monthly Hindi Correspondence</h4>
+                </div>
+            </div>
+            <div class="shadow-lg p-4 mb-3 bg-white rounded">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <p>Month :</p>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control btn-outline" formControlName="month" name="month">
+                                <option [disabled]="true">---Select---</option>
+                                <option class="dropdown-item" *ngFor="let item of monthList" [ngValue]="item">{{item}}</option>
+                            </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <p>Year : </p>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control btn-outline" formControlName="year" name="year">
+                                <option [disabled]="true">---Select---</option>
+                                <option class="dropdown-item" *ngFor="let item of yearList" [ngValue]="item">{{item}}</option>
+                            </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="shadow-lg p-4 mb-3 bg-white rounded">
+                <div class="">
+                    <h5>1. Letters/ Papers/ Documents issued :</h5>
+                    <div class=" ml-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>a. Total Paper/ Letter/ Document issued : </span>
+                                <p class="ml-3">जारी किए गए कुल पेपर/पत्र/दस्तावेज</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="Total_document_issued" name="Total_document_issued" placeholder="" [(ngModel)]="defaultZero.first" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>b. Total paper issued bilingually :</span>
+                                <p class="ml-3">द्विभाषी रूप से जारी किए गए कुल पेपर</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="papers_issued_bilingually" name="papers_issued_bilingually" placeholder="" [(ngModel)]="defaultZero.second" (keyup)="checkValue($event)" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>c. Total papers issued in English :</span>
+                                <p class="ml-3">अंग्रेजी में जारी किए गए कुल पेपर</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="papers_issued_English" name="papers_issued_English" placeholder="" [(ngModel)]="defaultZero.third" (keyup)="checkValue1($event)" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>d. Total papers issued in Hindi :</span>
+                                <p class="ml-3">हिंदी में जारी किए गए कुल पेपर</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="papers_issued_Hindi" name="papers_issued_Hindi" placeholder="" [(ngModel)]="defaultZero.fourth" (keyup)="checkValue2($event)" required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="shadow-lg p-4 mb-3 bg-white rounded">
+                <div class="">
+                    <h5>2. Letters received in Hindi:</h5>
+                    <div class=" ml-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>a. Total letter received in Hindi : </span>
+                                <p class="ml-3">हिंदी में प्राप्त कुल पत्र</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="letter_received_Hindi" name="letter_received_Hindi" placeholder="" (keyup)="checkValue3($event)" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>b. Total no. of letter replied in Hindi :</span>
+                                <p class="ml-3">कुल हिंदी में उत्तर दिए गए पत्रों की संख्या</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="letters_replied_Hindi" name="letters_replied_Hindi" [(ngModel)]="default" (keypress)="keyPress($event)" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>c. Total no. of letter replied in English :</span>
+                                <p class="ml-3">कुल अंग्रेजी में उत्तर दिए गए पत्रों की संख्या </p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="letters_replied_English" name="letters_replied_English" id="k" placeholder="" [(ngModel)]="percent" (ngModelChange)="onPercentChange($event)" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>d. How many of these were not required to be answered :</span>
+                                <p class="ml-3">इनमें से कितनों का उत्तर देने की आवश्यकता नहीं थी</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="answered_not_required" name="answered_not_required" placeholder="" required>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="shadow-lg p-4 mb-3 bg-white rounded">
+                <div class="">
+                    <h5>3. Details of Letters sent :</h5>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Details of letters <br/>पत्रों का विवरण</th>
+                                <th scope="col">Sent in Hindi <br/>हिंदी में भेजा गया</th>
+                                <th scope="col">Sent in English <br/> अंग्रेजी में भेजा गया</th>
+                                <th scope="col">Total Letter Sent <br/> भेजे गए कुल पत्रों की संख्या</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="mb-0">To 'A' region</p>
+                                            <span>क क्षेत्र</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button style="font-size:10px; border-radius:50px;margin-top: 12px !important;" data-bs-toggle="popover" title="A Region" data-placement="right" data-content="बिहार, छत्तीसगढ़,हरियाणा,हिमाचल प्रदेश,झारखंड,मध्यप्रदेश ,राजस्थान ,उत्तरप्रदेश,उत्तराखंड राज्य ,दिल्ली तथा अंडमान  व निकोबर द्वीप समूह संघ राज्य क्षेत्र"> <i class="fa fa-info"></i></button>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td><input class="form-control" type="number" min="0" formControlName="A_hindi" name="A_hindi" placeholder="" (input)='countA()' required></td>
+                                <td><input class="form-control" type="number" min="0" formControlName="A_english" name="A_english" placeholder="" (input)='countA()' required></td>
+                                <td><input class="form-control" type="number" min="0" formControlName="A_Total" name="A_Total" placeholder="" [(ngModel)]='totalx' readonly></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="mb-0">To 'B' region</p>
+                                            <span>ख क्षेत्र</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button style="font-size:10px; border-radius:50px;margin-top: 12px !important;" data-bs-toggle="popover" title="B Region" data-placement="right" data-content="गुजरात, महाराष्ट्र , पंजाब राज्य,तथा दमन व दीव तथा दादरा व नगर हवेली  संघ राज्य क्षेत्र"> <i class="fa fa-info"></i></button>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td><input class="form-control" type="number" min="0" formControlName="B_hindi" name="B_hindi" placeholder=""(input)='countB()' required></td>
+                                <td><input class="form-control" type="number" min="0" formControlName="B_english" name="B_english" placeholder="" (input)='countB()' required></td>
+                                <td><input class="form-control" type="number" min="0" formControlName="B_Total" name="B_Total" placeholder="" [(ngModel)]='totalB' readonly></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="mb-0">To 'C' region</p>
+                                            <span>ग क्षेत्र</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button style="font-size:10px; border-radius:50px;margin-top: 12px !important;" data-bs-toggle="popover" data-bs-trigger="hover focus" title="C Region" data-placement="right" data-content="ओड़िशा,पश्चिम बंगाल ,आंध्र प्रदेश, तेलेंगाना,तमिलनाडू ,केरल,कर्नाटक ,तथा सभी उत्तर पूर्वी राज्य"> <i class="fa fa-info"></i></button>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td><input class="form-control" type="number" min="0" formControlName="C_hindi" name="C_hindi" placeholder="" (input)='countC()' required></td>
+                                <td><input class="form-control" type="number" min="0" formControlName="C_english" name="C_english" placeholder="" (input)='countC()' required></td>
+                                <td><input class="form-control" type="number" min="0" formControlName="C_Total" name="C_Total" placeholder="" [(ngModel)]='totalC' readonly></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="shadow-lg p-4 mb-3 bg-white rounded">
+                <div class="">
+                    <h5>4. Details of noting in files/Documents:</h5>
+                    <div class=" ml-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>a. Total no. of noting written in Hindi: </span>
+                                <p class="ml-3"> हिंदी में लिखे गए कुल नोटिंग </p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="No_notingpages_hindi" name="No_notingpages_hindi" placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>b. Total no. of noting written in English:</span>
+                                <p class="ml-3">अंग्रेजी में लिखे गए कुल नोटिंग</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="No_notingpages_english" name="No_notingpages_english" placeholder="" (input)='countNoting()' required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>c. Total No. of noting :</span>
+                                <p class="ml-3">नोटिंग की कुल संख्या</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" min="0" formControlName="no_notingpages" name="no_notingpages" placeholder="" [(ngModel)]='totalNoting' required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="text-center pl-5 pr-5">
+                <button type="submit" class="btn btn-primary btn-lg btn-block w-20 mb-5 mt-2" data-toggle="modal" data-target="#viewReportModal" data-backdrop="static" data-keyboard="false" [disabled]="ReportForm.pristine || ReportForm.invalid" (click)="viewReportModal();">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>
+
+<!-- Modal part starts -->
+
+<div class="modal fade" id="viewReportModal" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document1">
+        <div class="modal-content">
+            <div class="modal-header editheader bg-primary">
+                <h5 class="modal-title" id="ModalLabel ">View Report details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <table class="table table-bordered table-hover m-auto">
+                    <tbody>
+                        <tr>
+                            <th>Month :</th>
+                            <td>{{viewDetail.month}}</td>
+                        </tr>
+                        <tr>
+                            <th>Year :</th>
+                            <td>{{viewDetail.year}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total papers/document issued :</th>
+                            <td>{{viewDetail.Total_document_issued}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total papers issued bilingually :</th>
+                            <td>{{viewDetail.papers_issued_bilingually}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total papers issued in English :</th>
+                            <td>{{viewDetail.papers_issued_English}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total papers issued in Hindi :</th>
+                            <td>{{viewDetail.papers_issued_Hindi}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total letter received in Hindi :</th>
+                            <td>{{viewDetail.letter_received_Hindi}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total letter replied in Hindi :</th>
+                            <td>{{viewDetail.letters_replied_Hindi}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total letter replied in English :</th>
+                            <td>{{viewDetail.letters_replied_English}}</td>
+                        </tr>
+                        <tr>
+                            <th> Not required to be answered :</th>
+                            <td>{{viewDetail.answered_not_required}}</td>
+                        </tr>
+                        <tr>
+                            <th>'A' region Hindi:</th>
+                            <td>{{viewDetail.A_hindi}}</td>
+                        </tr>
+                        <tr>
+                            <th>'A' region English:</th>
+                            <td>{{viewDetail.A_english}}</td>
+                        </tr>
+                        <tr>
+                            <th>'A' region Total:</th>
+                            <td>{{viewDetail.A_Total}}</td>
+                        </tr>
+                        <tr>
+                            <th>'B' region Hindi:</th>
+                            <td>{{viewDetail.B_hindi}}</td>
+                        </tr>
+                        <tr>
+                            <th>'B' region English:</th>
+                            <td>{{viewDetail.B_english}}</td>
+                        </tr>
+                        <tr>
+                            <th>'B' region Total:</th>
+                            <td>{{viewDetail.B_Total}}</td>
+                        </tr>
+                        <tr>
+                            <th>'C' region Hindi</th>
+                            <td>{{viewDetail.C_hindi}}</td>
+                        </tr>
+                        <tr>
+                            <th>'C' region English:</th>
+                            <td>{{viewDetail.C_english}}</td>
+                        </tr>
+                        <tr>
+                            <th>'C' region Total:</th>
+                            <td>{{viewDetail.C_Total}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total no. of noting pages written in Hindi :</th>
+                            <td>{{viewDetail.No_notingpages_hindi}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total no. of noting pages written in English:</th>
+                            <td>{{viewDetail.No_notingpages_english}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total No. of noting pages:</th>
+                            <td>{{viewDetail.no_notingpages}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-success" data-dismiss="modal" (click)="Submit();">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>

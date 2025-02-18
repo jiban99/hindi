@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+.bg-color {
+    background-color: #c7aeae;
+}
+.nav-link.active {
+    color: rgba(0,0,0,.9) !important;
+    font-weight: 600;
+  }
+
+.nav-link {
+    color: rgba(0,0,0,.6) !important;
+    font-weight: 500;
+}
+  
+
+.navbar-brand {
+    font-family: 'Kaushan Script', cursive;
+    color: #fff;
+}
+
+.cl-w {
+    color: #fff;
+    // cursor: pointer;
+}

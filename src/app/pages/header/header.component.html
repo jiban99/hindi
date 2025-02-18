@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-color">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse color-w" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">हिंदी पत्राचार Welcome, {{username}}</a>
+        <div class="ml-auto mr-5">
+            <ul class="navbar-nav  mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link cl-w" routerLink="/register" routerLinkActive="active" ng-reflect-router-link-active="active" *ngIf="role === 'admin'">Create User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cl-w" routerLink="/report" routerLinkActive="active" ng-reflect-router-link-active="active"> Add Report </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cl-w" routerLink="/viewReport" routerLinkActive="active" ng-reflect-router-link-active="active">View Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cl-w" routerLink="/adminViewReport" routerLinkActive="active" ng-reflect-router-link-active="active" *ngIf="role === 'admin'">Admin View Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cl-w" routerLink="/changePassword" routerLinkActive="active" ng-reflect-router-link-active="active">Change Pasword</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cl-w" routerLink="/logout" routerLinkActive="active" ng-reflect-router-link-active="active">Logout</a>
+                </li>
+               
+            </ul>
+        </div>
+
+        
+    </div>
+</nav>
